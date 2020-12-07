@@ -21,6 +21,15 @@ When divided by category, a paired-samples t-test did find evidence of a statist
 **Conclusion:**
 The prices between the Coles and Woolworths are kept close together due to competition. Our statistical analysis did find a statistically significance difference in the prices of products in some categories. Since supermarkets change their prices daily, this analysis does not provide *practical significance* and we could not use our findings to predict which store would be cheaper on any given day.
 
+## Table of Contents
+1. Executive Summary
+2. Load Packages and Data
+3. Summary Statistics
+4. Hypothesis Test
+5. Interpretation
+6. Further Interpretation (by category)
+7. Discussion
+
 ## Load Packages and Data
 
 ```{r message=FALSE, warning=FALSE}
