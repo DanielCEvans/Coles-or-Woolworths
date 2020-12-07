@@ -32,7 +32,7 @@ The prices between the Coles and Woolworths are kept close together due to compe
 
 ## Load Packages and Data
 
-```{r message=FALSE, warning=FALSE}
+```
 library(dplyr)
 library(tidyr)
 library(readr)
@@ -94,7 +94,6 @@ summary <- pairs %>% summarise(
   MAX  = max(diffcw, na.rm = T), 
   IQR  = Q3-Q1
 ) 
-
 summary
 ```
 
@@ -204,7 +203,7 @@ We decided to perform this analysis again, this time grouping the data by Catego
 <img width="828" alt="5" src="https://user-images.githubusercontent.com/65587875/101334591-30e91e80-38cc-11eb-9d8a-b7a1cc7f8e80.png">
 
 
-```{r, cols.print = 15}
+```
 result2 = pairs %>% group_by(category) %>% nest() %>%
   mutate(
     out = map(data, ~ t.test(.x$coles, .x$woolworths, paired = T, conf.level = 1-alpha) %>%
@@ -238,7 +237,7 @@ When our sample was analysed by category:
 
  * in 4 categories we **did** find a statistically significant difference between the prices
  
- ```{r}
+ ```
 result2 %>% 
   filter(p.value < alpha) %>% 
   mutate(conc = ifelse(mean < 0, "coles was on average cheaper than woolworths", "woolworths was on average cheaper than coles"),
