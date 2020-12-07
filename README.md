@@ -72,9 +72,10 @@ g %>% group_by(company) %>% summarise(
 
 ggplot(g, aes(x = company, y = value)) + geom_boxplot(outlier.colour = "red") + coord_flip()
 ```
+<img width="916" alt="1" src="https://user-images.githubusercontent.com/65587875/101334606-35153c00-38cc-11eb-9675-bc10a41e35b6.png">
 
-IMAGE1
-IMAGE2
+<img width="912" alt="2" src="https://user-images.githubusercontent.com/65587875/101334604-347ca580-38cc-11eb-9bdd-6ab3592ca7b7.png">
+
 
 From the above side-by-side boxplot, it appears that the spread of the data is very similar between coles and woolworths. They both appear to have similar means, interquartile ranges and number of outliers. The summary statistics table above confirms quantitatively that the data for coles and woolworths follow similar trends. 
 
@@ -136,7 +137,8 @@ ggplot(pairs, aes(x = diffcw)) +
   stat_function(fun = function(x) dnorm(x, summary$MEAN, summary$SD), color="red") + xlab(TeX("$\\mu_\\Delta$"))
 ```
 
-IMAGE3
+<img width="805" alt="3" src="https://user-images.githubusercontent.com/65587875/101334587-2dee2e00-38cc-11eb-996a-fc2b574c2b4b.png">
+
 
  * The data has homogeneity of variance
  
@@ -171,7 +173,8 @@ result = pairs %>% nest() %>%
 result %>% select(mean, p.value, ptest, htest, conf.level, conf.low, conf.high) 
 ```
 
-IMAGE4
+<img width="824" alt="4" src="https://user-images.githubusercontent.com/65587875/101334599-334b7880-38cc-11eb-8202-4585fa5443c6.png">
+
 
 ## Interpretation
 
@@ -198,7 +201,8 @@ We decided to perform this analysis again, this time grouping the data by Catego
  ggplot(g, aes(x = category, y = value)) + geom_boxplot(outlier.colour = "red") + coord_flip()
 ```
 
-IMAGE5
+<img width="828" alt="5" src="https://user-images.githubusercontent.com/65587875/101334591-30e91e80-38cc-11eb-9d8a-b7a1cc7f8e80.png">
+
 
 ```{r, cols.print = 15}
 result2 = pairs %>% group_by(category) %>% nest() %>%
@@ -216,8 +220,9 @@ result2 = pairs %>% group_by(category) %>% nest() %>%
 
 result2 %>% select(category, df, mean, p.value, ptest, htest, conf.level, conf.low, conf.high) 
 ```
- IMAGE6
- IMAGE7
+ <img width="815" alt="6" src="https://user-images.githubusercontent.com/65587875/101334574-29297a00-38cc-11eb-8c00-a1c32d7b87f1.png">
+ <img width="813" alt="7" src="https://user-images.githubusercontent.com/65587875/101334566-26c72000-38cc-11eb-84eb-15c095492341.png">
+
  
  ## Discussion 
 
@@ -242,7 +247,8 @@ result2 %>%
   select(category, conclusions) 
 ```
 
-IMAGE8
+<img width="816" alt="8" src="https://user-images.githubusercontent.com/65587875/101334551-23339900-38cc-11eb-989c-7dc8f4503f60.png">
+
 
 **What were the strengths and limitations of your investigation?\ **
 
