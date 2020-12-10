@@ -8,7 +8,7 @@ The aim of this investigation was to determine if there was a statistically sign
 
 **Sample:** 
 
-To obtain price information for identical products between the two companies, we wrote a javascript program to download the entire website [http://www.grocerycop.com.au] (http://www.grocerycop.com.au). This form of convenience sampling allowed us to gather sample data from the population in a fast and efficient manner.
+To obtain price information for identical products between the two companies, we wrote a javascript program to download the entire [grocery cop](http://www.grocerycop.com.au) website. This form of convenience sampling allowed us to gather sample data from the population in a fast and efficient manner.
 The variables in the data were page number: item number, category, title, company, price and price difference.
 We obtained 5552 paired samples across 10 different categories: Fridge, Bakery, Fruit-vegetables, Pantry, Freezer, Baby-health-beauty, Meat-seafood, Entertainment-international-food, Clothing-household-pet, Tobacco-drinks
 Procedure: After some small manipulations and tidying of the dataset, we performed a paired samples t-test to determine if there was a statistically significant difference between the mean price of products. Our null hypothesis assumes there is no difference in means, while the alternative hypothesis states the opposite.
@@ -29,6 +29,7 @@ The prices between the Coles and Woolworths are kept close together due to compe
 5. Interpretation
 6. Further Interpretation (by category)
 7. Discussion
+{:toc}
 
 ## Load Packages and Data
 
@@ -97,23 +98,22 @@ summary <- pairs %>% summarise(
 summary
 ```
 
-The statistical summary above shows that the total difference in means is
-$\mu_\Delta = \mu_c - \mu_w$ = 0.061 with sd = 2.346.
+The statistical summary above shows that the total difference in means is 0.061 with sd = 2.346.
 
-In order to determine if this difference is statistically significant, we conduct a paired samples t-test. 
+In order to determine if this difference is statistically significant, I conducted a paired samples t-test. 
 
 ## Hypothesis Test
 
-For our paired samples, we want to determine if the difference between the population means is statistically significant.
-Our null hypothesis assumes there is no statistically significant difference in means, while the alternative hypothesis states the opposite. 
+For our paired samples, I wanted to determine if the difference between the population means is statistically significant.
+The null hypothesis assumes there is no statistically significant difference in means, while the alternative hypothesis states the opposite. 
 
-$$ H_0 : \mu_\Delta = 0 $$
+- null hypothesis: mu_Delta = 0 
 
-$$ H_A : \mu_\Delta \neq 0 $$
+- alternative hypothesis: mu_Delta != 0 
 
 ### Significance Level
 
- * Due to our large sample size we choose to use a significance level $\alpha$ of 0.01
+ * Due to our large sample size I choose to use a significance level alpha of 0.01
 
 ### Assumptions
 
@@ -124,7 +124,7 @@ $$ H_A : \mu_\Delta \neq 0 $$
    - We expect our sample is representative
    
  * the sample size is large enough for CLT to be effective
-   - Our sample is large with n=`r summary$N`
+   - Our sample is large with n = 5552
    
  * The difference in the population means is approximately normally distributed
    - This histogram below shows that price differences is approximately normally distributed
@@ -142,14 +142,14 @@ ggplot(pairs, aes(x = diffcw)) +
  * The data has homogeneity of variance
  
    - A Levene's test was conducted to determine the assumption of equal variance in our datasets with the following statistical hypothesis: $H_{0lt} : \sigma_1^2 = \sigma_2^2$
-   - The p value for Levene's test $p = 0.898 > 0.05$ therefore we **Fail to Reject $H_{0lt}$** meaning we can assume our data has homogeneity of variance.
+   - The p value for Levene's test p = 0.898 > 0.05 therefore we **Fail to Reject null hypothesis** meaning we can assume our data has homogeneity of variance.
    
 ### Decision Rules
 
- * **Reject $H_0$** if
+ * **Reject H_0** if
    * p-value < 0.01 (the significance level $\alpha$) 
-   * 99% CI of the mean difference does not capture $H_0 : \mu_\Delta = 0$
- * Otherwise **Fail to Reject $H_0$** 
+   * 99% CI of the mean difference does not capture H_0 : mu_Delta = 0
+ * Otherwise **Fail to Reject H_0** 
  
  ### Paired T-Test 
 
@@ -179,15 +179,14 @@ result %>% select(mean, p.value, ptest, htest, conf.level, conf.low, conf.high)
 
 A paired-samples t-test was used to test for a statistically significant difference between the prices of identical products sold at Coles and Woolworths.
 
-The mean difference between Coles and Woolworths prices was found to be `r result$mean`
+The mean difference between Coles and Woolworths prices was found to be 0.061
 
 All assumptions for using a t test were tested. A histogram was used to test normality and Levene's test was used to test homogeneity of variance.
 
 The paired-samples t-test results are:
 
- * t(df=`r result$parameter`) = `r result$statistic`, `r result$ptest`,
-`r result$conf.level`% CI [`r result$conf.low` `r result$conf.high`].
- * Given these findings we **`r result$htest`**
+ * t(df=5551) = 1.947, p >0.01 99% CI [-0.02, 0.142].
+ * Given these findings we **Fail to Reject null hypothesis**
 
 When our whole sample was analysed, the paired-samples t-test **did not** find evidence of a statistically significant difference between the prices of identical products sold at Coles and Woolworths.
 
@@ -227,15 +226,15 @@ result2 %>% select(category, df, mean, p.value, ptest, htest, conf.level, conf.l
 
 **What did we conclude?**
 
-Using a paired-samples t-test we determined:
+Using a paired-samples t-test I determined:
 
- * when our sample was analysed as a whole, we **did not** find evidence for statistically significant price differences
+ * when the sample was analysed as a whole, I **did not** find evidence for statistically significant price differences
 
-When our sample was analysed by category:
+When the sample was analysed by category:
 
- * in 8 categories we **did not** find a statistically significant difference between the prices
+ * in 8 categories I **did not** find a statistically significant difference between the prices
 
- * in 4 categories we **did** find a statistically significant difference between the prices
+ * in 4 categories I **did** find a statistically significant difference between the prices
  
  ```
 result2 %>% 
@@ -249,21 +248,21 @@ result2 %>%
 <img width="816" alt="8" src="https://user-images.githubusercontent.com/65587875/101334551-23339900-38cc-11eb-989c-7dc8f4503f60.png">
 
 
-**What were the strengths and limitations of your investigation?\ **
+**What were the strengths and limitations of your investigation? **
 
-A strength of our investigation was the sample size. As we were able to write a java script to scrape the entire data from the grocerycop website, we were able to analyse a very large sample size. This lead to a more accurate representation of the population and allowed us to assume the data was normally distributed when conducting the paired samples t-test.
+A strength of the investigation was the sample size. As I was able to write a java script to scrape the entire data from the grocerycop website, I was able to analyse a very large sample size. This lead to a more accurate representation of the population and allowed me to assume the data was normally distributed when conducting the paired samples t-test.
 
-We also performed an analysis by category using very efficient code.
+I also performed an analysis by category using very efficient code.
 
 **What improvements could be made or what would you do differently next time?**
 
-In our analysis we set the value of $\alpha$ (the probablity of Type I error) to a low value.
-Since $\alpha = Pr(Reject~H_0~|~H_0~is~true)$ is the probility that we detect an effect (Reject H0) when an effect does not exists (H0 is true).
+In the analysis I set the value of alpha (the probablity of Type I error) to a low value.
+Since alpha = Pr(Reject H_0| H_0 is true) is the probility that we detect an effect (Reject H0) when an effect does not exists (H_0 is true).
 
-There is another type of error we did not consider, $\beta$ (the probablity of Type II error).
-Since $\beta = Pr(Fail~to~Reject~H_0 ~|~ H_0~is~false)$  is the probability that we detect no effect (Fail to Reject H0) when an effect does exist.
+There is another type of error I did not consider, beta (the probablity of Type II error).
+Since beta = Pr(Fail to Reject H_0 | H_0 is false) is the probability that I detect no effect (Fail to Reject H0) when an effect does exist.
 
-Statistical power is defined as $power = 1-\beta$. We want high power so that our hypothesis test is good at detecting a false null hypothosis. 
+Statistical power is defined as power = 1-beta. I want high power so that the hypothesis test is good at detecting a false null hypothosis. 
 
 Below I have run a power test to determine what the power level for our t.test is:
 
@@ -272,7 +271,7 @@ ptt <- power.t.test(power = NULL, n = nrow(pairs), delta = summary$MEAN, sd = su
 ptt2 <- power.t.test(power = 0.8, n = NULL, delta = summary$MEAN, sd = summary$SD, sig.level = alpha, type = "paired", alternative = "two.sided")
 ```
 
-For our sample size of n=`r nrow(pairs)` (pairs) the power=`r ptt$power %>% round(3)` meaning that our test was **underpowered**. Therefore, the t.test would not have been able to reliably detect false null hypothesis, given the very small number of cents of difference we were trying to detect.
+For the sample size of n=5552 (pairs) the power=0.264 meaning that the test was **underpowered**. Therefore, the t.test would not have been able to reliably detect false null hypothesis, given the very small number of cents of difference we were trying to detect.
 
-In order to achieve power=0.8, which is typically used in studies, our sample size would need to be increased to n=`r format(ceiling(ptt2$n),0)` (pairs) in order for the t.test to be able to reliably detect false null hypothesis.
+In order to achieve power=0.8, which is typically used in studies, the sample size would need to be increased to n=17117 (pairs) in order for the t.test to be able to reliably detect false null hypothesis.
 
